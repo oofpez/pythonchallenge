@@ -32,7 +32,7 @@ def split_scores(inputline):
 # turn a dictionary of teamScores into a list of strings to write.
 def create_output(teamScores):
     results = list(teamScores.values())
-    results.sort(key=lambda x: int(x.score), reverse=True)
+    results.sort(key=lambda x: (-int(x.score),x.name), reverse=False)
     teamStrings = map(lambda n: "{0}, {1} {2}\n".format(n.name, n.score, 'pt' if n.score == 1 else 'pts'), results)
     return teamStrings
 
