@@ -18,9 +18,15 @@ class SimpleTest(unittest.TestCase):
         self.assertEqual(3, (results[0].score))
         self.assertEqual(0, (results[1].score))
 
+
+
     def testCreateOutput(self):
         results = main.create_output({'test Team A': main.teamScore('test Team A', 3), 'test Team B': main.teamScore('test Team B', 1)})
         self.assertEqual(['test Team A, 3 pts\n','test Team B, 1 pt\n'], (results))
+
+    def testCreateOutputSecondarySortOrder(self):
+        results = main.create_output({'test Team B': main.teamScore('test Team B', 3), 'test Team A': main.teamScore('test Team A', 3)})
+        self.assertEqual(['test Team A, 3 pts\n','test Team B, 3 pts\n'], (results))
 
 if __name__ == '__main__':
     unittest.main()
